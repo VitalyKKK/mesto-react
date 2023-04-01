@@ -21,6 +21,11 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     setNameCard(e.target.value);
   }
 
+  React.useEffect(() => {
+    setNameCard('');
+    setLinkCard('');
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       name={'place'}
@@ -42,6 +47,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         minLength={2}
         maxLength={30}
         onChange={handleChangeNameCard}
+        value={nameCard || ''}
       />
       <span className="popup__error" id="place-error" />
       <input
@@ -53,6 +59,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         required
         autoComplete="off"
         onChange={handleChangeLinkCard}
+        value={linkCard || ''}
       />
       <span className="popup__error" id="url-error" />
     </PopupWithForm>
